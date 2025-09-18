@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from '../app/app';
+import { LoginComponent } from './login/login';
 import { AuthComponent } from './auth/auth';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent },       // login en app.html
-  { path: 'auth', component: AuthComponent }   // destino después del login
+  { path: '', component: LoginComponent },
+  { path: 'auth', component: AuthComponent }
 ];
