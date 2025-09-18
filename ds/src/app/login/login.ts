@@ -1,23 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [],
-  templateUrl: './login.html',
-  styleUrl: './login.css'
-})
-export class Login {
-
-}
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-login',
+  standalone: true,
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
 export class LoginComponent {
   error: string = '';
+  private router = inject(Router); // ✅ usa el router de Angular
 
   login() {
     const usuario = (document.getElementById('email') as HTMLInputElement)?.value.trim();
@@ -36,7 +28,7 @@ export class LoginComponent {
     .then(res => res.json())
     .then(data => {
       if (data.token) {
-        window.location.href = '/auth'; // o usa Router si lo inyectas
+        this.router.navigate(['/auth']); // redirección sin recargar
       } else {
         this.error = 'Usuario o contraseña incorrectos';
       }
